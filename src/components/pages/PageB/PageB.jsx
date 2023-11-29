@@ -3,6 +3,8 @@ import { Field } from "../../Field/Field";
 import { Text } from "../../Text/Text";
 
 import Products from "../../../models/products"
+import BannerPageB from "../../../imgs/BannerMulher.png"
+
 
 import { formatCurrency } from "../../../utils/currency"
 import { toast } from "react-toastify";
@@ -13,7 +15,7 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0089ED;
+  background-color: #b9a08c;
   border-radius: 5px;
   color: white;
   border: none;
@@ -42,7 +44,7 @@ function PageB() {
      >
         <Image 
           width="50%"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBVW7eT2CwJmTKWpZspHjprZuzeFzcVDPTUjubqa1ZJI1jv5BZFsHtkHNhl0Mw3xso4Q&usqp=CAU" 
+          src={BannerPageB} 
         />
         <Field
           width="50%"

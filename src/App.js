@@ -4,12 +4,17 @@ import PageA from "./components/pages/PageA/PageA";
 
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import PageB from "./components/pages/PageB/PageB";
+import { useState } from "react";
 
 function App() {
+
+  const [tipo, setTipo] = useState('homem')
+
   return (
     <div className="App">
-      <NavBar />
-      <PageA />
+      <NavBar tipo={tipo} />
+      {tipo === 'homem' ? <PageA /> : tipo === 'mulher' ? <PageB /> : null }
       <ToastContainer/>
     </div>
   );

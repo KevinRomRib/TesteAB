@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Field } from "../../Field/Field";
 import { Text } from "../../Text/Text";
 
+import BannerPageA from "../../../imgs/BannerHomem.png"
+
 import Products from "../../../models/products"
 
 import { formatCurrency } from "../../../utils/currency"
@@ -13,7 +15,8 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0089ED;
+  background-color: #2e1915;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   color: white;
   border: none;
@@ -42,7 +45,7 @@ function PageA() {
      >
         <Image 
           width="50%"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBVW7eT2CwJmTKWpZspHjprZuzeFzcVDPTUjubqa1ZJI1jv5BZFsHtkHNhl0Mw3xso4Q&usqp=CAU" 
+          src={BannerPageA}
         />
         <Field
           width="50%"
