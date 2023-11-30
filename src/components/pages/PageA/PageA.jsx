@@ -44,17 +44,17 @@ function PageA() {
       paddingBottom="50px"
      >
         <Image 
-          width="50%"
+          width="90%"
           src={BannerPageA}
         />
         <Field
-          width="50%"
+          width="90%"
           display="flex"
           alignItems="center"
           justifyContent="center"
           flexWrap="wrap"
           paddingTop="30px"
-          gap="50px"
+          gap="30px"
         >
           {Products.map((item, index) => (
             <Field
@@ -62,7 +62,7 @@ function PageA() {
               display="flex"
               alignItems="flex-start"
               flexDirection="column"
-              gap="10px"
+              gap="1px"
               key={index}
             >
               <Image

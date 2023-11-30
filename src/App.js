@@ -9,7 +9,7 @@ import { useState } from "react";
 
 function App() {
 
-  const [tipo, setTipo] = useState('homem')
+  const [tipo, setTipo] = useState('mulher')
 
   return (
     <div className="App">
