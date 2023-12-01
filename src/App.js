@@ -9,6 +9,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BasePage from './components/pages/BasePage';
 import CadastrarVariosUsers from './components/pages/CadastrarVarios/cadastrarVarios';
+import NotFoundPage from './components/NotFound/notfound';
+import PaginaConversao from './components/pages/Conversao/conversao';
 
 
 function App() {
@@ -20,7 +22,8 @@ function App() {
           <Route path="/" element={<PageHome />} />
           <Route path="/u/:id" element={<BasePage />} />
           <Route path="/u/addVarios" element={<CadastrarVariosUsers />} />
-          <Route path="*" element={<h1>Not Found</h1>} />
+          <Route path="/u/conversao" element={<PaginaConversao />} />
+          <Route path="*" element={<NotFoundPage/>} />
         </Routes>
         <ToastContainer />
       </div>

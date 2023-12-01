@@ -9,6 +9,14 @@ const compraService = {
         } catch (error) {
             console.log(error);
         }
+    },
+    dados: async () => {
+        try {
+            const response = await api.post('/comprar/dados');
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
     }
 };
 

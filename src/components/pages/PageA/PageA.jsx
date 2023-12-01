@@ -32,7 +32,7 @@ function PageA({ user }) {
 
   const handlePurchase = async() => {
     try {
-      const compra = await compraService.createCompra({ idUsuario: user.id, page: 'b' })
+      const compra = await compraService.cadastrar({ idUsuario: user.id, page: 'a' })
       if (compra.status === 200) {
         toast("Comprado com sucesso!", { type: 'success' })
       }
