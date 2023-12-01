@@ -5,7 +5,7 @@ import userService from "../../../services/user";
 import { useParams } from "react-router-dom";
 import Loading from "../../Loading/loading";
 import NotFoundPage from "../../NotFound/notfound";
-import { set } from "mongoose";
+
 function BasePage() {
     const [state, setState] = useState(null);
     const [userdata, setUserdata] = useState(null);
@@ -23,7 +23,7 @@ function BasePage() {
     };
     useEffect(() => {
         getGenero();
-    }, []);
+    }, [id]);
 
     return (
         <>

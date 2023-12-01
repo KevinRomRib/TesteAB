@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<PageHome />} />
           <Route path="/u/:id" element={<BasePage />} />
           <Route path="/u/addVarios" element={<CadastrarVariosUsers />} />
-          <Route path="/u/conversao" element={<PaginaConversao />} />
+          <Route path="/conversao" element={<PaginaConversao />} />
           <Route path="*" element={<NotFoundPage/>} />
         </Routes>
         <ToastContainer />

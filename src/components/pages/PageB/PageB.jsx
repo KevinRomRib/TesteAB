@@ -10,6 +10,7 @@ import { formatCurrency } from "../../../utils/currency"
 import { toast } from "react-toastify";
 
 import compraService from "../../../services/compra";
+import { useEffect } from "react";
 
 const Button = styled.button`
   width: 100%;
@@ -41,6 +42,21 @@ function PageB({ user }) {
       toast("Erro ao comprar!", { type: 'error' })
     }
   }
+  // const acesso = async (userr) => {
+  //   try {
+  //     const acesso = await compraService.acesso({ idUsuario: userr.id, page: 'b' })
+  //     if (acesso.status === 200) {
+  //       console.log(acesso.data)
+  //     } else {
+  //       console.log(acesso)
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+  // useEffect(() => {
+  //   acesso(user)
+  // }, [])
 
   return (
     <Field
