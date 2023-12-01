@@ -1,7 +1,7 @@
 import styled, { keyframes, css } from "styled-components";
 import React from "react";
 import { toast } from "react-toastify";
-import usuarioService from "../../../services/usuarioService";
+import userService from "../../../services/user";
 // criando container
 const Container = styled.div`
 display: flex;
@@ -198,16 +198,19 @@ function PageHome() {
             email: email,
             genero: genero
         }
-        const response = usuarioService.cadastrar(usuario);
-        if (response.status !== 200) {
+        const response = await userService.cadastrar(usuario);
+        console.log(response.status)
+        if (response.status !== 201 && response.status !== 202) {
             toast.error("Erro ao cadastrar!")
-            return;
         }
-        if (response.status === 200) {
-            // setNome("");
-            // setEmail("");
-            // setGenero("");
+        if (response.status === 201) {
+            setNome("");
+            setEmail("");
+            setGenero("");
             toast.success("Cadastrado com sucesso!")
+        }
+        if (response.status === 202) {
+            toast.warning("Email Já cadastrado")
         }
     }
 
@@ -230,6 +233,7 @@ function PageHome() {
                 <Label>Genero
 
                     <Select onChange={(e) => setGenero(e.target.value)} value={genero}>
+                        <option value="">Selecione</option>
                         <option value="masculino">Masculino</option>
                         <option value="feminino">Feminino</option>
                     </Select>
