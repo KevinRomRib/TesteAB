@@ -8,6 +8,7 @@ import PageHome from './components/pages/Home/pageHome';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BasePage from './components/pages/BasePage';
+import CadastrarVariosUsers from './components/pages/CadastrarVarios/cadastrarVarios';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<PageHome />} />
           <Route path="/u/:id" element={<BasePage />} />
+          <Route path="/u/addVarios" element={<CadastrarVariosUsers />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
         <ToastContainer />
