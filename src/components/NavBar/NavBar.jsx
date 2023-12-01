@@ -2,12 +2,12 @@ import { Field } from "../Field/Field";
 import { Text } from "../Text/Text";
 import { FaCartShopping } from "react-icons/fa6";
 
-function NavBar(tipo) {
+export default function NavBar(tipo) {
    return (
      <Field
       width="100%"
       height="70px"
-      backgroundColor={tipo.tipo === 'homem' ? "#2e1915" : tipo.tipo === 'mulher' ? "#b9a08c" : null}
+      backgroundColor='#2e1915'
       boxShadow="4px 4px 6px rgba(0, 0, 0, 0.3)"
       display="flex"
       alignItems="center"
@@ -30,5 +30,5 @@ function NavBar(tipo) {
    );
  }
   
- export default NavBar;
+
  

@@ -8,7 +8,9 @@ import PageHome from './components/pages/Home/pageHome';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BasePage from './components/pages/BasePage';
-import CadastrarVariosUsers from './components/pages/CadastrarVarios/cadastrarVarios';
+import PaginaAleatoria from './components/pages/PaginaAleatoria/PaginaAleatoria';
+import NavBar from './components/NavBar/NavBar'
+import Admin from './components/pages/Admin/Admin';
 
 
 function App() {
@@ -16,16 +18,29 @@ function App() {
   return (
     <Router>
       <div className='App'>
+        <NavBar/>
         <Routes>
-          <Route path="/" element={<PageHome />} />
-          <Route path="/u/:id" element={<BasePage />} />
-          <Route path="/u/addVarios" element={<CadastrarVariosUsers />} />
-          <Route path="*" element={<h1>Not Found</h1>} />
+          <Route path="/fashionstore" element={<PaginaAleatoria />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
         <ToastContainer />
       </div>
     </Router>
   );
+
+
+  // return (
+  //   <Router>
+  //     <div className='App'>
+  //       <Routes>
+  //         <Route path="/" element={<PageHome />} />
+  //         <Route path="/u/:id" element={<BasePage />} />
+  //         <Route path="*" element={<h1>Not Found</h1>} />
+  //       </Routes>
+  //       <ToastContainer />
+  //     </div>
+  //   </Router>
+  // );
 }
 
 export default App;

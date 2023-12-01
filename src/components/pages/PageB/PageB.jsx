@@ -9,7 +9,12 @@ import BannerPageB from "../../../imgs/BannerMulher.png"
 import { formatCurrency } from "../../../utils/currency"
 import { toast } from "react-toastify";
 
-import compraService from "../../../services/compra";
+
+import { collection, addDoc, updateDoc, doc, getDoc } from 'firebase/firestore/lite';
+import { useEffect } from "react";
+
+import { db } from "../../../config/googlefirebaseConfig";
+
 
 const Button = styled.button`
   width: 100%;
@@ -28,22 +33,46 @@ const Image = styled.img`
   width: ${(props) => props.width};
 `;
 
-function PageB({ user }) {
+export default function PageB() {
 
-  const handlePurchase = async () => {
-    try {
-      const compra = await compraService.cadastrar({ idUsuario: user.id, page: 'b' })
-      if (compra.status === 200) {
-        toast("Comprado com sucesso!", { type: 'success' })
-      }
-    } catch (error) {
-      console.log(error)
-      toast("Erro ao comprar!", { type: 'error' })
-    }
+
+  const comprasCollectionRef = collection(db, "comprasAB")
+  const visitorCollectionRef = doc(db, 'visitorsAB', 'pagM')
+
+  const handlePurchase = async() => {
+    let data_atual = new Date
+    let tipo_pagina = localStorage.getItem('ultimaPagina')
+
+
+    await addDoc(comprasCollectionRef,
+      {
+        id_produto: '1',
+        tipo_pagina: tipo_pagina,
+        data: data_atual
+      })
+    toast("Comprado com sucesso!", {type: 'success'})
   }
 
-  return (
-    <Field
+
+
+  
+  const addVisitante = async () => {
+    let visitantes_atual = await getDoc(visitorCollectionRef)
+    let visitantes_tratados = visitantes_atual.data()
+    let total_atualizado = visitantes_tratados['númeroVisitantes'] + 1
+
+    await updateDoc(visitorCollectionRef, {númeroVisitantes : total_atualizado})
+  }
+
+
+  useEffect(() => {
+      addVisitante()
+
+  }, [])
+
+
+   return (
+     <Field
       width="100%"
       display="flex"
       justifyContent="center"
@@ -113,4 +142,3 @@ function PageB({ user }) {
   );
 }
 
-export default PageB;
