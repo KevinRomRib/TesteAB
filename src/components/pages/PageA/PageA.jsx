@@ -128,10 +128,17 @@ export default function PageA() {
                 color="green"
               >
                 {formatCurrency(item.price)}
-              </Text>
+                </Text>
             </Field>
-          ))}
-        </Field>
-     </Field>
-   );
- }
+            <Button
+              onClick={handlePurchase}
+            >
+              Comprar
+            </Button>
+          </Field>
+        ))}
+      </Field>
+    </Field>
+  );
+}
+
