@@ -9,6 +9,8 @@ import BannerPageB from "../../../imgs/BannerMulher.png"
 import { formatCurrency } from "../../../utils/currency"
 import { toast } from "react-toastify";
 
+import compraService from "../../../services/compra";
+
 const Button = styled.button`
   width: 100%;
   height: 35px;
@@ -26,14 +28,22 @@ const Image = styled.img`
   width: ${(props) => props.width};
 `;
 
-function PageB() {
+function PageB({ user }) {
 
-  const handlePurchase = () => {
-    toast("Comprado com sucesso!", {type: 'success'})
+  const handlePurchase = async () => {
+    try {
+      const compra = await compraService.cadastrar({ idUsuario: user.id, page: 'b' })
+      if (compra.status === 200) {
+        toast("Comprado com sucesso!", { type: 'success' })
+      }
+    } catch (error) {
+      console.log(error)
+      toast("Erro ao comprar!", { type: 'error' })
+    }
   }
-  
-   return (
-     <Field
+
+  return (
+    <Field
       width="100%"
       display="flex"
       justifyContent="center"
@@ -41,67 +51,66 @@ function PageB() {
       flexDirection="column"
       paddingTop="50px"
       paddingBottom="50px"
-     >
-        <Image 
-          width="90%"
-          src={BannerPageB} 
-        />
-        <Field
-          width="90%"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          flexWrap="wrap"
-          paddingTop="30px"
-          gap="30px"
-        >
-          {Products.map((item, index) => (
+    >
+      <Image
+        width="90%"
+        src={BannerPageB}
+      />
+      <Field
+        width="90%"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexWrap="wrap"
+        paddingTop="30px"
+        gap="30px"
+      >
+        {Products.map((item, index) => (
+          <Field
+            width="450px"
+            display="flex"
+            alignItems="flex-start"
+            flexDirection="column"
+            gap="1px"
+            key={index}
+          >
+            <Image
+              width="450px"
+              src={item.image}
+            />
             <Field
               width="450px"
               display="flex"
-              alignItems="flex-start"
-              flexDirection="column"
-              gap="1px"
-              key={index}
+              alignItems="center"
+              justifyContent="space-between"
             >
-              <Image
-                width="450px"
-                src={item.image}
-              />
-              <Field
-                width="450px"
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
+              <Text
+                fontSize="25px"
+                fontFamily="arial"
+                fontWeight="bold"
+                color="black"
               >
-                <Text
-                  fontSize="25px"
-                  fontFamily="arial"
-                  fontWeight="bold"
-                  color="black"
-                >
-                  {item.name}
-                </Text>
-                <Text
-                  fontSize="15px"
-                  fontFamily="arial"
-                  fontWeight="bold"
-                  color="green"
-                >
-                  {formatCurrency(item.price)}
-                </Text>
-              </Field>
-              <Button
-                onClick={handlePurchase}
+                {item.name}
+              </Text>
+              <Text
+                fontSize="15px"
+                fontFamily="arial"
+                fontWeight="bold"
+                color="green"
               >
-                Comprar
-              </Button>
+                {formatCurrency(item.price)}
+              </Text>
             </Field>
-          ))}
-        </Field>
-     </Field>
-   );
- }
+            <Button
+              onClick={handlePurchase}
+            >
+              Comprar
+            </Button>
+          </Field>
+        ))}
+      </Field>
+    </Field>
+  );
+}
 
- export default PageB;
- 
+export default PageB;
