@@ -17,7 +17,6 @@ function App() {
   
   return (
     <Router>
-      <div className='App'>
         <Routes>
           <Route path="/" element={<PageHome />} />
           <Route path="/u/:id" element={<BasePage />} />
@@ -26,7 +25,6 @@ function App() {
           <Route path="*" element={<NotFoundPage/>} />
         </Routes>
         <ToastContainer />
-      </div>
     </Router>
   );
 }

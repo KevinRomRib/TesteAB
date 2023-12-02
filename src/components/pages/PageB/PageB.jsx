@@ -29,35 +29,20 @@ const Image = styled.img`
   width: ${(props) => props.width};
 `;
 
-function PageB({ user }) {
+function PageB({ user, addCart, limparCarrinho }) {
 
-  const handlePurchase = async () => {
-    try {
-      const compra = await compraService.cadastrar({ idUsuario: user.id, page: 'b' })
-      if (compra.status === 200) {
-        toast("Comprado com sucesso!", { type: 'success' })
-      }
-    } catch (error) {
-      console.log(error)
-      toast("Erro ao comprar!", { type: 'error' })
-    }
+  const handlePurchase = async (item) => {
+    // try {
+    //   const compra = await compraService.cadastrar({ idUsuario: user.id, page: 'b' })
+    //   if (compra.status === 200) {
+    //     toast("Comprado com sucesso!", { type: 'success' })
+    //   }
+    // } catch (error) {
+    //   console.log(error)
+    //   toast("Erro ao comprar!", { type: 'error' })
+    // }
+    addCart(item)
   }
-  // const acesso = async (userr) => {
-  //   try {
-  //     const acesso = await compraService.acesso({ idUsuario: userr.id, page: 'b' })
-  //     if (acesso.status === 200) {
-  //       console.log(acesso.data)
-  //     } else {
-  //       console.log(acesso)
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-  // useEffect(() => {
-  //   acesso(user)
-  // }, [])
-
   return (
     <Field
       width="100%"
@@ -118,7 +103,7 @@ function PageB({ user }) {
               </Text>
             </Field>
             <Button
-              onClick={handlePurchase}
+              onClick={(e) => handlePurchase(item)}
             >
               Comprar
             </Button>

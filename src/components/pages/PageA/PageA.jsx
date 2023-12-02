@@ -29,36 +29,12 @@ const Image = styled.img`
   width: ${(props) => props.width};
 `;
 
-function PageA({ user }) {
+function PageA({ user, addCart, limparCarrinho }) {
 
-  const handlePurchase = async () => {
-    try {
-      const compra = await compraService.cadastrar({ idUsuario: user.id, page: 'a' })
-      if (compra.status === 200) {
-        toast("Comprado com sucesso!", { type: 'success' })
-      }
-    } catch (error) {
-      toast("Erro ao comprar!", { type: 'error' })
-    }
+  const handlePurchase = async (item) => {
+    addCart(item)
+
   }
-
-  // const acesso = async (userr) => {
-  //   try {
-  //     const acesso = await compraService.acesso({ idUsuario: userr.id, page: 'a' })
-  //     if (acesso.status === 200) {
-  //       console.log(acesso.data)
-  //     } else {
-  //       console.log(acesso)
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   acesso(user)
-  // }, [])
-
   return (
     <Field
       width="100%"
@@ -119,7 +95,7 @@ function PageA({ user }) {
               </Text>
             </Field>
             <Button
-              onClick={handlePurchase}
+              onClick={(e) => handlePurchase(item)}
             >
               Comprar
             </Button>

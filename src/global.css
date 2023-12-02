@@ -3,3 +3,24 @@
   padding: 0;
   font-family: "montserrat";
 }
+
+/* Estilizando a barra de rolagem para todos os elementos */
+* {
+  scrollbar-width: thin; /* Para navegadores que suportam */
+  scrollbar-color: transparent transparent; /* Para navegadores que suportam */
+}
+
+/* Para navegadores baseados em WebKit (Chrome, Safari, etc.) */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent; /* Cor de fundo da trilha */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Cor do 'polegar' da barra de rolagem */
+  border-radius: 10px;
+  border: 3px solid transparent; /* Espaço entre o 'polegar' e a trilha */
+}

@@ -2,12 +2,13 @@ import { Field } from "../Field/Field";
 import { Text } from "../Text/Text";
 import { FaCartShopping } from "react-icons/fa6";
 
-function NavBar(tipo) {
+function NavBar({tipo, Cart}) {
+   console.log(tipo);
    return (
      <Field
       width="100%"
       height="70px"
-      backgroundColor={tipo.tipo === 'homem' ? "#2e1915" : tipo.tipo === 'mulher' ? "#b9a08c" : null}
+      backgroundColor={tipo === 'masculino' ? "#2e1915" : tipo === 'feminino' ? "#b9a08c" : "#000000"}
       boxShadow="4px 4px 6px rgba(0, 0, 0, 0.3)"
       display="flex"
       alignItems="center"
@@ -24,7 +25,7 @@ function NavBar(tipo) {
          color="white"
          cursor="pointer"
       >
-         <FaCartShopping/>
+         <FaCartShopping onClick={(e) => Cart()}/>
       </Text>
      </Field>
    );
