@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import PageA from "../PageA/PageA";
 import Navbar from "../../NavBar/navbar";
 import PageB from "../PageB/PageB";
 import userService from "../../../services/user";
-import { useParams } from "react-router-dom";
+import { redirect, useParams } from "react-router-dom";
 import Loading from "../../Loading/loading";
 import NotFoundPage from "../../NotFound/notfound";
 import ShoppingCart from "../../OffSideCarrinho/offside";
 import { Field } from "../../Field/Field";
 import compraService from "../../../services/compra";
 import { toast } from "react-toastify";
+import AcessoService from "../../../services/acesso";
 
 function BasePage() {
     const [state, setState] = useState(null);
@@ -17,6 +18,9 @@ function BasePage() {
     const [isOpen, setIsOpen] = useState(false);
     const [cartItems, setCartItems] = useState([]);
     const [compraJaRealizada, setCompraJaRealizada] = useState(false);
+    const [acesso, setAcesso] = useState(false);
+    const { id } = useParams();
+
 
     // Função para adicionar um produto ao carrinho
     const addToCart = (product) => {
@@ -57,21 +61,29 @@ function BasePage() {
         setIsOpen(!isOpen);
     };
 
-    const { id } = useParams();
 
     const getGenero = async () => {
-        const user = await userService.findUser({ id: id });
-        if (user?.status === 200) {
-            setState(user.data.genero);
-            setUserdata(user.data);
-        } else {
-            setState("404")
+        try {
+            const user = await userService.findUser({ id: id });
+            if (user?.status === 200) {
+                setState(user.data.genero);
+                setUserdata(user.data);
+                try {
+                    await AcessoService.acessar({ idUsuario: id, page: user.data.genero == "masculino" ? 'a' : 'b' })
+                } catch (error) {
+                    console.log(error)
+                }
+            } else {
+                setState("404")
+            }
+        } catch (error) {
+            redirect("/");
         }
     };
 
     const comprar = async () => {
         try {
-            const compra = await compraService.cadastrar({ idUsuario: userdata.id, page: state== "masculino" ? 'a' : 'b' })
+            const compra = await compraService.cadastrar({ idUsuario: userdata.id, page: state == "masculino" ? 'a' : 'b' })
             if (compra.status === 200) {
                 toast("Comprado com sucesso!", { type: 'success' })
             }
@@ -86,7 +98,7 @@ function BasePage() {
 
     useEffect(() => {
         getGenero();
-    }, [id]);
+    }, []);
 
     return (
         <Field>
