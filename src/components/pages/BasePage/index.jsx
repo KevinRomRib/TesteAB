@@ -10,7 +10,7 @@ import { Field } from "../../Field/Field";
 import compraService from "../../../services/compra";
 import { toast } from "react-toastify";
 import AcessoService from "../../../services/acesso";
-import Navbar from "../../NavBar/navbar";
+import Navbar from "../../Navbar/navbar";
 
 function BasePage() {
     const [state, setState] = useState(null);
