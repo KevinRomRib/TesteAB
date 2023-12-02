@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import PageA from "../PageA/PageA";
-import Navbar from "../../NavBar/navbar";
 import PageB from "../PageB/PageB";
 import userService from "../../../services/user";
 import { redirect, useParams } from "react-router-dom";
@@ -11,6 +10,7 @@ import { Field } from "../../Field/Field";
 import compraService from "../../../services/compra";
 import { toast } from "react-toastify";
 import AcessoService from "../../../services/acesso";
+import Navbar from "../../NavBar/navbar";
 
 function BasePage() {
     const [state, setState] = useState(null);
@@ -18,7 +18,6 @@ function BasePage() {
     const [isOpen, setIsOpen] = useState(false);
     const [cartItems, setCartItems] = useState([]);
     const [compraJaRealizada, setCompraJaRealizada] = useState(false);
-    const [acesso, setAcesso] = useState(false);
     const { id } = useParams();
 
 
